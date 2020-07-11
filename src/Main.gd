@@ -4,18 +4,18 @@ var TitleScreen = preload("res://src/menus/TitleScreen.tscn")
 var Client = preload("res://src/networking/Client.tscn")
 var Server = preload("res://src/networking/Server.tscn")
 
-var currentScene
+var current_scene
 
 func _ready():
 	randomize()
 
-	currentScene = TitleScreen.instance()
-	currentScene.connect("start_game", self, "start_game")
-	add_child(currentScene)
+	current_scene = TitleScreen.instance()
+	current_scene.connect("start_game", self, "start_game")
+	add_child(current_scene)
 
 func start_game(address = null):
-	remove_child(currentScene)
-	currentScene.queue_free()
+	remove_child(current_scene)
+	current_scene.queue_free()
 
 	var server = Server.instance()
 
@@ -30,5 +30,5 @@ func start_game(address = null):
 	# implement "Leave Game" in in-game menu
 	server.add_child(client)
 
-	currentScene = server
-	add_child(currentScene)
+	current_scene = server
+	add_child(current_scene)

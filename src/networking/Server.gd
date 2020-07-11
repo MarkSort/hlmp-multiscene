@@ -41,7 +41,7 @@ func remove_player_from_room(id):
 	rooms[room].erase(id)
 
 	for playerId in rooms[room]:
-		client.rpc_unreliable_id(playerId, "removePlayer", room, id)
+		client.rpc_unreliable_id(playerId, "remove_player", room, id)
 
 func add_player_to_room(id, room):
 	players[id].room = room
@@ -56,12 +56,12 @@ func add_player_to_room(id, room):
 	rooms[room].append(id)
 
 # Server rpcs
-remotesync func playerSelfUpdate(position):
+remotesync func player_self_update(position):
 	var id = get_tree().get_rpc_sender_id()
 	players[id].position = position
 	for playerId in rooms[players[id].room]:
 		if playerId != id:
-			client.rpc_unreliable_id(playerId, "playerUpdate", players[id].room, id, position)
+			client.rpc_unreliable_id(playerId, "player_update", players[id].room, id, position)
 
 remotesync func change_room(new_room):
 	var id = get_tree().get_rpc_sender_id()

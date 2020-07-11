@@ -1,7 +1,7 @@
 extends Node
 
 var player
-var moveInput = Vector2.ZERO
+var move_input = Vector2.ZERO
 var auto_move = false
 var auto_move_room
 var auto_move_since_change = 0
@@ -21,26 +21,26 @@ func _process(delta):
 			auto_move_since_change = 0
 
 			if auto_move_room == "RedRoom":
-				moveInput = Vector2.RIGHT
+				move_input = Vector2.RIGHT
 			else:
-				moveInput = Vector2.LEFT
+				move_input = Vector2.LEFT
 		return
 
-	moveInput = Vector2.ZERO
+	move_input = Vector2.ZERO
 
 	if Input.is_action_pressed("move_up"):
-		moveInput.y -= 1
+		move_input.y -= 1
 	if Input.is_action_pressed("move_down"):
-		moveInput.y += 1
+		move_input.y += 1
 	if Input.is_action_pressed("move_right"):
-		moveInput.x += 1
+		move_input.x += 1
 	if Input.is_action_pressed("move_left"):
-		moveInput.x -= 1
+		move_input.x -= 1
 
-	moveInput = moveInput.normalized()
+	move_input = move_input.normalized()
 
 func _physics_process(delta):
 	if !player:
 		return
 
-	player.move_and_slide(moveInput * 600)
+	player.move_and_slide(move_input * 600)
