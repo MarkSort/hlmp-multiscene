@@ -112,7 +112,6 @@ remotesync func set_room_players(room, positions):
 	for player_node in current_room.get_node("Players").get_children():
 		var intId = int(player_node.name)
 		if intId != myId && !positions.has(intId):
-			print("removing stale player: ", player_node.name)
 			current_room.get_node("Players").remove_child(player_node)
 			player_node.free()
 
