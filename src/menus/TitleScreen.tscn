@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/menus/TitleScreen.gd" type="Script" id=1]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TopCenter" type="CenterContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopVBox" type="VBoxContainer" parent="TopCenter"]
+margin_left = 387.0
+margin_top = 268.0
+margin_right = 636.0
+margin_bottom = 332.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="HBoxContainer" parent="TopCenter/TopVBox"]
+margin_right = 249.0
+margin_bottom = 20.0
+
+[node name="HostButton" type="Button" parent="TopCenter/TopVBox/Host"]
+margin_right = 42.0
+margin_bottom = 20.0
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="HBoxContainer" parent="TopCenter/TopVBox"]
+margin_top = 40.0
+margin_right = 249.0
+margin_bottom = 64.0
+
+[node name="Address" type="LineEdit" parent="TopCenter/TopVBox/Join"]
+margin_right = 210.0
+margin_bottom = 24.0
+custom_constants/minimum_spaces = 50
+text = "127.0.0.1"
+
+[node name="JoinButton" type="Button" parent="TopCenter/TopVBox/Join"]
+margin_left = 214.0
+margin_right = 249.0
+margin_bottom = 24.0
+text = "Join"
+[connection signal="pressed" from="TopCenter/TopVBox/Host/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="text_entered" from="TopCenter/TopVBox/Join/Address" to="." method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="TopCenter/TopVBox/Join/JoinButton" to="." method="_on_JoinButton_pressed"]
